@@ -2,7 +2,7 @@
 
 # Recipe App
 
-> An app allows users to buy and sell recipes online with food and incredients.
+> An app allows users to buy and sell recipes online with food and ingredients.
 
 ## Run the project
 
