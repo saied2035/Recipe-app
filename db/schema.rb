@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_080711) do
     t.string "name", null: false
     t.time "prepration_time", null: false
     t.time "cooking_time", null: false
-    t.text "description"
+    t.text "description", null: false
     t.boolean "public", default: true
     t.bigint "user_id"
     t.datetime "created_at", null: false
