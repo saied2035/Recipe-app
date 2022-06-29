@@ -2,15 +2,15 @@
 	<p><%=recipe.name%></p>
 	<p>Prepration time: <%=recipe.prepration_time%></p>
 	<div>
-    public : <%=link_to recipe_path(id:recipe.id), method: :put do %>
-             <label class="switch">
-               <input type="checkbox">
+		 <%=form_with url: recipe_path, method: :put do %>
+             public: <label class="switch">
+               <%= check_box_tag "",@recipe.public,@recipe.public, onchange: "this.form.submit()" %>
                <span class="slider round"></span>
              </label>
              <%end%> 
     </div>
     <p>Cooking time: <%=recipe.cooking_time%></p>
-    <p><<%=description%></p>
+    <p>Description: <%=recipe.description%></p>
     <button>Generate shopping list</button>
     <button>Add ingredient</button>
     <hr>
