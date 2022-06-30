@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
+<%= link_to "New food", new_food_path %>
 <h1>Foods</h1>
-
+<table>
+<thead>
+<tr>
+<th>Food</th>
+<th>Measurement unit</th>
+<th>Unit price</th>
+<th>Actions</th>
+</tr>
+</thead>
 <div id="foods">
+<tbody>
   <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
+   <tr><%= render food %></tr>
   <% end %>
+</tbody>
 </div>
 
-<%= link_to "New food", new_food_path %>
+</table>
