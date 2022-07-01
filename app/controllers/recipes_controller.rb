@@ -2,19 +2,17 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes or /recipes.json
-  def public_recipies
-    @current_user = current_user
-    @recipes = @current_user.recipes.where('public = true')
+  def public_recipes
+    @recipes = Recipe.where('public = true')
   end
-    
+
   def index
     @current_user = current_user
     @recipes = @current_user.recipes
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show
-  end
+  def show; end
 
   # GET /recipes/new
   def new

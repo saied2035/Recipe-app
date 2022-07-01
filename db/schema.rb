@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_30_111702) do
     t.time "cooking_time", null: false
     t.text "description", null: false
     t.boolean "public", default: true
+    t.decimal "total_price", default: "0.0"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
