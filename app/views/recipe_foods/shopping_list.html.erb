@@ -1,0 +1,15 @@
+<h1>Shopping List</h1>
+<h3><%="Amount of food items to buy: #{@foods.count}" %></h3>
+<h3><%="Total value of food needed: $#{@recipe.total_price}" %></h3>
+<table>
+<thead>
+<td>Food</td>
+<td>Quantity</td>
+<td>Price</td>
+</thead>
+<tbody>
+<%@foods.each do |food|%>
+<tr><%=render partial: "recipes/food", locals:{food:food,recipe:@recipe}%></tr>
+<%end%>
+</tbody>
+</table>
