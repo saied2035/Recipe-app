@@ -1,5 +1,4 @@
 class RecipeFoodsController < ApplicationController
-
   def shopping_list
     @recipe = Recipe.find(params[:recipe_id])
     @foods = @recipe.foods
@@ -28,7 +27,6 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
-  
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
     @food = Food.find(params[:food_id])
