@@ -1,4 +1,10 @@
 class RecipeFoodsController < ApplicationController
+
+  def shopping_list
+    @recipe = Recipe.find(params[:recipe_id])
+    @foods = @recipe.foods
+  end
+
   def new
     @recipe_food = RecipeFood.new
   end
@@ -22,11 +28,14 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
+  
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @food = Food.find(params[:food_id])
     @recipe_food = RecipeFood.find_by(recipe_id: params[:recipe_id], food_id: params[:food_id])
     puts @recipe_food.id
     @recipe_food.destroy
-
+    @recipe.update(total_price: @recipe.total_price - (@food.price * @food.quantity))
     respond_to do |format|
       format.html { redirect_to recipe_url(id: params[:recipe_id]), notice: 'Recipe Food was successfully deleted.' }
       format.json { head :no_content }
