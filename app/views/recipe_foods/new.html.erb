@@ -1,0 +1,9 @@
+<h1>New recipe food</h1>
+
+<%= render "form", recipe_food: @recipe_food %>
+<%= link_to "New food", new_food_path %>
+<br>
+
+<div>
+  <%= link_to "Back to recipe", recipe_path(id:params[:recipe_id]) %>
+</div
