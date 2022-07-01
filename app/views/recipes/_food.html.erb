@@ -1,0 +1,12 @@
+<%# <div id="<%= dom_id food %>
+<td><%= food.name %></td>
+<%# #unit %>
+<td><%= "#{food.quantity} #{food.unit}" %></td>
+<%# #price %>
+<td><%= "$#{food.price * food.quantity}"  %></td>
+<%# #action %>
+<td>
+  <%= button_to "Delete", recipe_recipe_food_url(food_id:food.id,recipe_id:recipe.id), method: :delete %>
+  <%= link_to "Modify", edit_food_path(id:food.id,recipe_id:recipe.id)%>  
+</td>
+<%# </div> %>
