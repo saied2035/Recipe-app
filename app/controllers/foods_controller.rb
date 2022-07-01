@@ -38,8 +38,11 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
+    recipe = Recipe.find(params[:recipe_id])
+    recipe.update(total_price: recipe.total_price - (@food.price * @food.quantity))
     respond_to do |format|
       if @food.update(food_params)
+        recipe.update(total_price: recipe.total_price + (@food.price * @food.quantity))
         format.html { redirect_to recipe_url(params[:recipe_id]), notice: 'Food was successfully updated.' }
         format.json { render :show, status: :ok, location: @food }
       else
