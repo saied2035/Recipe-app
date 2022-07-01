@@ -11,7 +11,9 @@
     </div>
     <p>Cooking time: <%=recipe.cooking_time%></p>
     <p>Description: <%=recipe.description%></p>
+    <%= link_to shopping_list_path(recipe_id: recipe.id) do%>
     <button>Generate shopping list</button>
+    <%end%>
     <%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: recipe.id) %>
     <hr>
     <table>
