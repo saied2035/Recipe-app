@@ -4,11 +4,11 @@ class CreateFoods < ActiveRecord::Migration[7.0]
       #  name 
       t.string :name , null: false
       #  measurement unit
-      t.string :unit, default: "gram" 
+      t.string :unit
       # price 
-      t.float :price, default: 0.0
+      t.numeric :price
       #  quantity
-      t.integer :quantity, default: 1
+      t.integer :quantity
       #  user id
       t.references :user, foreign_key: true, index: true
         

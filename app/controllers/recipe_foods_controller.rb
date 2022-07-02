@@ -1,23 +1,29 @@
 class RecipeFoodsController < ApplicationController
+  load_and_authorize_resource :recipe
+  load_and_authorize_resource :recipe_food, through: :recipe
   def shopping_list
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.includes(:foods).find(params[:recipe_id])
+    puts @recipe.total_price
     @foods = @recipe.foods
   end
 
   def new
+    @current_user = current_user
+    @foods = @current_user.foods
     @recipe_food = RecipeFood.new
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
     @food = Food.find(params[:recipe_food][:food_id])
-    @recipe_food = RecipeFood.new(recipe_params)
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_food = RecipeFood.new(recipe_food_params)
+    puts "price #{@recipe.total_price}"
     @food.update(quantity: params[:recipe_food][:quantity])
     @recipe_food.recipe = @recipe
     @recipe_food.food = @food
     respond_to do |format|
       if @recipe_food.save
-        @recipe.update(total_price: @recipe.total_price + (@food.price * @food.quantity))
+        @recipe.update!(total_price: @recipe.total_price + (@food.price * @food.quantity))
         format.html { redirect_to recipe_url(@recipe), notice: 'Recipe Food added successfully.' }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -28,10 +34,9 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
+    @recipe_food = RecipeFood.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     @food = Food.find(params[:food_id])
-    @recipe_food = RecipeFood.find_by(recipe_id: params[:recipe_id], food_id: params[:food_id])
-    puts @recipe_food.id
     @recipe_food.destroy
     @recipe.update(total_price: @recipe.total_price - (@food.price * @food.quantity))
     respond_to do |format|
@@ -42,7 +47,7 @@ class RecipeFoodsController < ApplicationController
 
   private
 
-  def recipe_params
-    params.require(:recipe_food).permit(:quantity, :food_id)
+  def recipe_food_params
+    params.require(:recipe_food).permit(:quantity, :food_id, :recipe_id)
   end
 end

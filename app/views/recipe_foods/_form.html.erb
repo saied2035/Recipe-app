@@ -12,7 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.collection_select :food_id, Food.order(:created_at),:id,:name, include_blank: true %>
+    <%= form.collection_select :food_id,foods,:id,:name, include_blank: true %>
     <%=form.number_field :quantity, placeholder:"Quantity"%>
     <%= form.submit 'Add'%>
   </div>

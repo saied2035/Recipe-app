@@ -1,7 +1,13 @@
-<div>
-	<p><%=recipe.name%></p>
-	<p>Prepration time: <%=recipe.prepration_time%></p>
-	<div>
+  <div class="recipe_details_page" >
+	<p class="recipe_details_name"><%=recipe.name%></p>
+  <div class="recipe_main_content">
+    <div class="recipe_details_details">
+	    <p>Prepration time: <%="#{(recipe.prepration_time/60).to_i}h #{(recipe.prepration_time%60).to_i}mins"%></p>
+      <p>Cooking time: <%="#{(recipe.cooking_time/60).to_i}h #{(recipe.cooking_time%60).to_i}mins"%></p>
+      <p>Description: <%=recipe.description%></p>
+    </div>
+    <% if can? :manage, recipe%>
+	  <div class="public_switch">
 		 <%=form_with url: recipe_path, method: :put do %>
              public: <label class="switch">
                <%= check_box_tag "public",@recipe.public,@recipe.public, onchange: "this.form.submit()" %>
@@ -9,20 +15,28 @@
              </label>
              <%end%> 
     </div>
-    <p>Cooking time: <%=recipe.cooking_time%></p>
-    <p>Description: <%=recipe.description%></p>
+    <%end%>
+  </div>
+     <% if can? :manage, recipe%>
+     <div class="recipe_details_buttons">
     <%= link_to shopping_list_path(recipe_id: recipe.id) do%>
     <button>Generate shopping list</button>
     <%end%>
-    <%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: recipe.id) %>
+    <%= link_to new_recipe_recipe_food_path(recipe_id: recipe.id) do %>
+    <button>Add ingredient</button>
+    <%end%>
+    </div>
+    <%end%>
     <hr>
-    <table>
+    <table class="table_div">
       <thead>
         <tr>
           <th>Food</th>
           <th>Quantity</th>
           <th>value</th>
+          <% if can? :manage, recipe%>
           <th>Actions</th>
+          <%end%>
         </tr>
       </thead>
       <tbody>
