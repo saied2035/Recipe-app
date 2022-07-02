@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+   load_and_authorize_resource
   before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes or /recipes.json
@@ -7,8 +8,11 @@ class RecipesController < ApplicationController
   end
 
   def index
+    if current_user.present?
     @current_user = current_user
-    @recipes = @current_user.recipes
+    puts "what is that! #{@current_user.name}"
+    @recipes = @current_user.recipes 
+    end
   end
 
   # GET /recipes/1 or /recipes/1.json

@@ -1,4 +1,5 @@
 class RecipeFoodsController < ApplicationController
+   load_and_authorize_resource
   def shopping_list
     @recipe = Recipe.find(params[:recipe_id])
     @foods = @recipe.foods

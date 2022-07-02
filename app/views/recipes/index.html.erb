@@ -1,5 +1,5 @@
+<%if can? :manage, Recipe%>
 <h1>Recipes</h1>
-
 <div id="recipes">
   <%= link_to "New recipe", new_recipe_path %>
   <% @recipes.each do |recipe| %>
@@ -8,3 +8,10 @@
     <%end%>
   <% end %>
 </div>
+<%end%>
+<%if cannot? :manage, Recipe%>
+   <p>Do you want to add recipes?</p>
+   <%= link_to new_user_registration_path, :class =>"nav_element" do%>
+       <button>Sign up</button>
+   <%end%>
+<%end%>

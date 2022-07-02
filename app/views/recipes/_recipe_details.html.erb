@@ -1,6 +1,7 @@
 <div>
 	<p><%=recipe.name%></p>
 	<p>Prepration time: <%=recipe.prepration_time%></p>
+   <% if can? :manage, recipe%>
 	<div>
 		 <%=form_with url: recipe_path, method: :put do %>
              public: <label class="switch">
@@ -9,12 +10,15 @@
              </label>
              <%end%> 
     </div>
+    <%end%>
     <p>Cooking time: <%=recipe.cooking_time%></p>
     <p>Description: <%=recipe.description%></p>
+     <% if can? :manage, recipe%>
     <%= link_to shopping_list_path(recipe_id: recipe.id) do%>
     <button>Generate shopping list</button>
     <%end%>
     <%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: recipe.id) %>
+    <%end%>
     <hr>
     <table>
       <thead>
@@ -22,7 +26,9 @@
           <th>Food</th>
           <th>Quantity</th>
           <th>value</th>
+          <% if can? :manage, recipe%>
           <th>Actions</th>
+          <%end%>
         </tr>
       </thead>
       <tbody>
