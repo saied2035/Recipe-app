@@ -14,8 +14,8 @@
   <div>
     <%=form.text_field :name, placeholder:"Name"%>
     <%=form.text_area :description, placeholder:"Description"%>
-    <%=form.time_field :prepration_time, placeholder:'Prepration time',value: "%H:%M",min: 'hh:mm:ss',max: 'hh:mm:ss'%>
-    <%=form.time_field :cooking_time, placeholder:'Cooking time',value: "%H:%M",min: 'hh:mm:ss',max: 'hh:mm:ss'%>
+    <%=form.number_field :prepration_time, placeholder:'Prepration time (in mintues)'%>
+    <%=form.number_field :cooking_time, placeholder:'Cooking time in mintues)'%>
     <%= form.submit 'Create'%>
   </div>
 <% end %>

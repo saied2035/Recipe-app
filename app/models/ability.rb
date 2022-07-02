@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
      user ||= User.new
-     can :public_recipes, Recipe
+    can :public_recipes, Recipe
     can :read, Recipe, public:true
     return unless user.id
     can :manage, Recipe, user: user

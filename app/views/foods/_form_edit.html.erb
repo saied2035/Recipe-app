@@ -14,7 +14,7 @@
   <div>
     <%=form.text_field :name, placeholder: "Name"%>
     <%=form.text_field :unit, placeholder: "Unit"%>
-    <%=form.number_field :price, placeholder: "Price"%>
+    <%=form.number_field :price, :step => 0.1, placeholder: "Price"%>
     <%=form.number_field :quantity, placeholder: "Quantity"%>
 
     <%= form.submit :submit %>

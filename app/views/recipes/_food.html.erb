@@ -8,7 +8,9 @@
 <% if can? :manage, food%>
 <% if params[:id] %>
 <td>
-  <%= button_to "Delete", recipe_recipe_food_url(food_id:food.id,recipe_id:recipe.id), method: :delete %>
+   <%recipe_food = RecipeFood.find_by(recipe_id: recipe.id, food_id: food.id)%>
+  <%= button_to "Delete", recipe_recipe_food_url(id:recipe_food.id,food_id:food.id,recipe_id:recipe.id), 
+  method: :delete %>
   <%= link_to "Modify", edit_food_path(id:food.id,recipe_id:recipe.id)%>  
 </td>
 <%end%>
