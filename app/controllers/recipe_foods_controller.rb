@@ -1,7 +1,8 @@
 class RecipeFoodsController < ApplicationController
-   load_and_authorize_resource
+  load_and_authorize_resource :recipe
+load_and_authorize_resource :recipe_food, :through => :recipe
   def shopping_list
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.includes(:foods).find(params[:recipe_id])
     @foods = @recipe.foods
   end
 
@@ -10,9 +11,9 @@ class RecipeFoodsController < ApplicationController
   end
 
   def create
+    @recipe_food = RecipeFood.new(recipe_food_params)
     @recipe = Recipe.find(params[:recipe_id])
     @food = Food.find(params[:recipe_food][:food_id])
-    @recipe_food = RecipeFood.new(recipe_params)
     @food.update(quantity: params[:recipe_food][:quantity])
     @recipe_food.recipe = @recipe
     @recipe_food.food = @food
@@ -43,7 +44,7 @@ class RecipeFoodsController < ApplicationController
 
   private
 
-  def recipe_params
-    params.require(:recipe_food).permit(:quantity, :food_id)
+  def recipe_food_params
+    params.require(:recipe_food).permit(:quantity, :food_id,:recipe_id)
   end
 end

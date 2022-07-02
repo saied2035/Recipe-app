@@ -11,7 +11,7 @@
 <%end%>
 <%if cannot? :manage, Recipe%>
    <p>Do you want to add recipes?</p>
-   <%= link_to new_user_registration_path, :class =>"nav_element" do%>
+   <%= link_to new_user_registration_path do%>
        <button>Sign up</button>
    <%end%>
 <%end%>
