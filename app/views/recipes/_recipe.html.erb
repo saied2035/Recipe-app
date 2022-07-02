@@ -1,5 +1,8 @@
-<div id="<%= dom_id recipe %>">
+	<div class="recipe_name_remove_button">
 	<p><%=recipe.name%></p>
-	<p><%=recipe.description%></p>
 	<%= button_to "Remove", recipe_path(id:recipe.id), method: :delete%>	
-</div>
+	</div>
+
+	<div class="recipe_desc">
+	<p class="recipe_desc"><%=recipe.description%></p>
+	</div>
