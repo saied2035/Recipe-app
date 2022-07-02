@@ -1,5 +1,8 @@
-<%= link_to "New food", new_food_path %>
-<h1>Foods</h1>
+<h1 class="food_heading">Foods</h1>
+<div class="new_food">
+<%= link_to new_food_path do%>
+<button>New food</button>
+<%end%>
 <table>
 <thead>
 <tr>
@@ -18,3 +21,4 @@
 </div>
 
 </table>
+</div>

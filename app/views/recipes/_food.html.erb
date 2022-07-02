@@ -7,11 +7,11 @@
 <%# #action %>
 <% if can? :manage, food%>
 <% if params[:id] %>
-<td>
+<td class="action_btn">
    <%recipe_food = RecipeFood.find_by(recipe_id: recipe.id, food_id: food.id)%>
-  <%= button_to "Delete", recipe_recipe_food_url(id:recipe_food.id,food_id:food.id,recipe_id:recipe.id), 
+  <%= button_to "Delete", recipe_recipe_food_url(id:recipe_food.id,food_id:food.id,recipe_id:recipe.id), class: "table_delete_btn", 
   method: :delete %>
-  <%= link_to "Modify", edit_food_path(id:food.id,recipe_id:recipe.id)%>  
+  <%= link_to "Modify", edit_food_path(id:food.id,recipe_id:recipe.id), class: "table_modify_btn"%>  
 </td>
 <%end%>
 <%end%>

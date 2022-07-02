@@ -23,8 +23,10 @@
     <%= link_to "Sign up", new_user_registration_path, :class =>"nav_element "%>
     <% end %>
     </nav>
-    <p style="color: green"><%= notice %></p>
-    <p style="color: red;"><%= alert %></p>
     <%= yield %>
+    <div class="notification">
+      <p style="color: green"><%= notice %></p>
+      <p style="color: red;"><%= alert %></p>
+    </div>
   </body>
 </html>
