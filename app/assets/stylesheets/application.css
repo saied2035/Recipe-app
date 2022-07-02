@@ -151,3 +151,21 @@ input:checked + .slider::before {
   flex-direction: column;
   gap: 1rem;
  }
+
+ /* recipe page */
+ .recipe_page{
+  margin: 0 10%;
+  display: flex;
+  justify-content: center;
+  border: 2px solid;
+  align-items: center;
+  flex: 2;
+  
+ }
+ .recipes_heading {
+
+ }
+ .new_recipe {
+  display: flex;
+  margin-left: auto;
+ }
