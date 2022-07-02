@@ -1,0 +1,25 @@
+<h1 class="food_heading">Foods</h1>
+<div class="new_food">
+<%= link_to new_food_path do%>
+<button>New food</button>
+<%end%>
+<table>
+<thead>
+<tr>
+<th>Food</th>
+<th>Measurement unit</th>
+<th>Unit price</th>
+<th>Quantity</th>
+<th>Actions</th>
+</tr>
+</thead>
+<div id="foods">
+<tbody>
+  <% @foods.each do |food| %>
+   <tr><%= render food %></tr>
+  <% end %>
+</tbody>
+</div>
+
+</table>
+</div>

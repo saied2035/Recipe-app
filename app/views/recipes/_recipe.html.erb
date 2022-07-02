@@ -1,0 +1,8 @@
+	<div class="recipe_name_remove_button">
+	<p><%=recipe.name%></p>
+	<%= button_to "Remove", recipe_path(id:recipe.id), method: :delete , class:"table_delete_btn"%>	
+	</div>
+
+	<div class="recipe_desc">
+	<p class="recipe_desc"><%=recipe.description%></p>
+	</div>

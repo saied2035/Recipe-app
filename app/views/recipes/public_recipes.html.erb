@@ -1,0 +1,10 @@
+<div class=public_recipe_div>
+	<h1>Public Recipes</h1>
+	<%@recipes.each do |recipe|%>
+    <%= link_to recipe do %>
+	<div class=public_recipe>
+	<%=render partial:"public_recipe", locals:{recipe:recipe}%>
+	</div>
+	<%end%>
+	<%end%>
+</div>	

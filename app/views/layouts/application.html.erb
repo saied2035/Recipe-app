@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RecipeApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <nav>
+    <%= link_to "Home",public_recipes_path, class:"nav_element" %>
+    <% if current_user.present? %>
+    <%= link_to "Recipes",  recipes_path, class:"nav_element" %>
+    <%= link_to "Foods", foods_path, class:"nav_element" %>
+    <p class="nav_element"><%= "#{current_user.name}" %></p>
+    <%= button_to "Sign out",destroy_user_session_url,method: :delete, class:"nav_element"%>
+    <%end%>
+    <% unless current_user.present? %>
+    <%= link_to "Log in", new_user_session_path, :class => "nav_element reg"%>
+    <%= link_to "Sign up", new_user_registration_path, :class =>"nav_element "%>
+    <% end %>
+    </nav>
+    <%= yield %>
+    <div class="notification">
+      <p style="color: green"><%= notice %></p>
+      <p style="color: red;"><%= alert %></p>
+    </div>
+  </body>
+</html>

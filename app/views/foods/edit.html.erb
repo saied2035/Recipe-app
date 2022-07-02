@@ -1,0 +1,8 @@
+<h1>New food</h1>
+
+<%= render partial: "form_edit", locals:{id: params[:id],recipe_id:params[:recipe_id]} %>
+<br>
+
+<div>
+  <%= link_to "Back to foods", foods_path %>
+</div>

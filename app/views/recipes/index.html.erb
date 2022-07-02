@@ -1,0 +1,22 @@
+  <%if can? :manage, Recipe%>
+<div class="recipe_page">
+<h1 class="recipes_heading">Recipes</h1>
+  <div id="recipes">
+  <%= link_to new_recipe_path, class: "new_recipe" do %>
+  <button>New recipe</button>
+  <%end%>
+  <% @recipes.each do |recipe| %>
+    <%= link_to recipe do %>
+  <div class="recipe_added">
+    <%= render recipe %>
+  </div>
+    <%end%>
+  <% end %>
+</div>
+<%end%>
+<%if cannot? :manage, Recipe%>
+   <p>Do you want to add recipes?</p>
+   <%= link_to new_user_registration_path do%>
+       <button>Sign up</button>
+   <%end%>
+<%end%>

@@ -1,0 +1,7 @@
+<%= render partial: 'recipe_details', locals: {recipe: @recipe, foods: @recipe.foods} %>
+ <% if can? :manage, @recipe%>
+<div class="recipe_actions">
+  <%= link_to "Back to recipes", recipes_path %>
+  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+</div>
+<%end%>

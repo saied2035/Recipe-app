@@ -1,0 +1,10 @@
+<%# <div id="<%= dom_id food %>
+<td><%= food.name %></td>
+<%# #unit %>
+<td><%= food.unit %></td>
+<%# #price %>
+<td><%= food.price %></td>
+<td><%=food.quantity%>
+<%# #action %>
+<td><%= button_to "Delete", food, method: :delete,class:"table_delete_btn" %></td>
+<%# </div> %>
