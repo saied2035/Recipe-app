@@ -10,11 +10,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_out_path_for(resource_or_scope)
-     public_recipes_url
+  def after_sign_out_path_for(_resource_or_scope)
+    public_recipes_url
   end
-  
-
 
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }

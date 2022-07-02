@@ -1,6 +1,6 @@
 class RecipeFoodsController < ApplicationController
   load_and_authorize_resource :recipe
-load_and_authorize_resource :recipe_food, :through => :recipe
+  load_and_authorize_resource :recipe_food, through: :recipe
   def shopping_list
     @recipe = Recipe.includes(:foods).find(params[:recipe_id])
     puts @recipe.total_price
@@ -48,6 +48,6 @@ load_and_authorize_resource :recipe_food, :through => :recipe
   private
 
   def recipe_food_params
-    params.require(:recipe_food).permit(:quantity, :food_id,:recipe_id)
+    params.require(:recipe_food).permit(:quantity, :food_id, :recipe_id)
   end
 end
