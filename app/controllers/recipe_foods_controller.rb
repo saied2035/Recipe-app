@@ -14,16 +14,16 @@ load_and_authorize_resource :recipe_food, :through => :recipe
   end
 
   def create
-    @recipe_food = RecipeFood.new(recipe_food_params)
-    @recipe = Recipe.find(params[:recipe_id])
-    puts "price #{@recipe.total_price}"
     @food = Food.find(params[:recipe_food][:food_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_food = RecipeFood.new(recipe_food_params)
+    puts "price #{@recipe.total_price}"
     @food.update(quantity: params[:recipe_food][:quantity])
     @recipe_food.recipe = @recipe
     @recipe_food.food = @food
     respond_to do |format|
       if @recipe_food.save
-        @recipe.update(total_price: @recipe.total_price + (@food.price * @food.quantity))
+        @recipe.update!(total_price: @recipe.total_price + (@food.price * @food.quantity))
         format.html { redirect_to recipe_url(@recipe), notice: 'Recipe Food added successfully.' }
         format.json { render :show, status: :created, location: @recipe }
       else
