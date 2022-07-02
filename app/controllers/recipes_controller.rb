@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
+  before_action :order, only: %i[public_recipes index]
   before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes or /recipes.json
   def public_recipes
-    @recipes = Recipe.where('public = true')
+    @recipes = Recipe.where('public = true').order(order)
   end
 
   def index
@@ -12,7 +13,7 @@ class RecipesController < ApplicationController
 
     @current_user = current_user
     puts "what is that! #{@current_user.name}"
-    @recipes = @current_user.recipes
+    @recipes = @current_user.recipes.order(order)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -68,5 +69,9 @@ class RecipesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def recipe_params
     params.require(:recipe).permit(:name, :description, :prepration_time, :cooking_time)
+  end
+
+  def order
+    'created_at DESC'
   end
 end
