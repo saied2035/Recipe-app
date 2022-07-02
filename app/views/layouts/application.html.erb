@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <nav>
+    <%= link_to "Home",public_recipes_path, class:"nav_element" %>
+    <% if current_user.present? %>
+    <%= link_to "Recipes",  recipes_path, class:"nav_element" %>
+    <%= link_to "Foods", foods_path, class:"nav_element" %>
+    <p class="nav_element"><%= "#{current_user.name}" %></p>
+    <%= button_to "Sign out",destroy_user_session_url,method: :delete, class:"nav_element"%>
+    <%end%>
+    <% unless current_user.present? %>
+    <%= link_to "Log in", new_user_session_path, :class => "nav_element reg"%>
+    <%= link_to "Sign up", new_user_registration_path, :class =>"nav_element "%>
+    <% end %>
+    </nav>
     <p style="color: green"><%= notice %></p>
     <p style="color: red;"><%= alert %></p>
     <%= yield %>
